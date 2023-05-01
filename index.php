@@ -1,0 +1,137 @@
+<?php 
+
+include_once 'conexao.php';
+
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="images/favicon.ico">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<title>CRUD - Javascript</title>
+</head>
+<body>
+	 <div class="container">
+        <div class="row mt-4">
+            <div class="col-lg-12 d-flex justify-content-between align-items-center">
+                <div>
+                    <h4>Listar Usuários</h4>
+                </div>
+                <div>
+                	<!-- Botão para modal -->
+						<button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#cadUsuarios">
+						  Cadastro Usuário
+						</button>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <span id="msgAlerta"></span>
+
+        <div class="row">
+            <div class="col-lg-12">
+            	<span class="listar-usuarios"></span>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal Cadastro -->
+<div class="modal fade" id="cadUsuarios" tabindex="-1" aria-labelledby="cadUsuariosLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="cadUsuariosLabel">Cadastrar Usuário</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="cad-usuario-form">
+        	<span id="msgAlertaErroCad"></span>
+          <div class="mb-3">
+            <label for="nome" class="col-form-label">Nome:</label>
+            <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome do Usuáio">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="col-form-label">E-mail:</label>
+            <input type="email" name="email" class="form-control" id="email" placeholder="E-mail">
+          </div> 
+          <div class="modal-footer">
+        	<button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Fechar</button>
+        	<input type="submit" class="btn btn-outline-success btn-sm" id="edit-usuario-btn" value="Cadastrar" />
+      	</div>       
+        </form>
+      </div>      
+    </div>
+  </div>
+</div>
+  <!-- FIM Modal Cadastro -->
+
+  <!-- Modal Visualizar -->
+<div class="modal fade" id="visUsuariosModal" tabindex="-1" aria-labelledby="visUsuariosLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="visUsuariosLabel">Detalhes do Usuário</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <span id="msgAlertaErroVis"></span>
+              <dl class="row">
+                  <dt class="col-sm-3">ID</dt>
+                  <dd class="col-sm-9"><span id="idUsuario"></span></dd>
+
+                  <dt class="col-sm-3">E-mail</dt>
+                  <dd class="col-sm-9"><span id="nomeUsuario"></dd>
+
+                  <dt class="col-sm-3">Nome</dt>
+                  <dd class="col-sm-9"><span id="emailUsuario"></dd>
+              </dl>
+          <div class="modal-footer">          
+        </div> 
+      </div>      
+    </div>
+  </div>
+</div>
+  <!-- FIM Modal Visualizar -->
+
+  <!-- Modal Editar -->
+        <div class="modal fade" id="editUsuariosModal" tabindex="-1" aria-labelledby="editUsuariosLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editUsuariosLabel">Editar Usuário</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form id="edit-usuario-form">
+                  <span id="msgAlertaErroEdit"></span>
+
+                    <input type="hidden" name="id" id="editid">
+
+                  <div class="mb-3">
+                    <label for="nome" class="col-form-label">Nome:</label>
+                    <input type="text" name="nome" class="form-control" id="editnome" placeholder="Nome do Usuáio">
+                  </div>
+                  <div class="mb-3">
+                    <label for="email" class="col-form-label">E-mail:</label>
+                    <input type="email" name="email" class="form-control" id="editemail" placeholder="E-mail">
+                  </div> 
+                  <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Fechar</button>
+                  <input type="submit" class="btn btn-outline-warning btn-sm" id="edit-usuario-btn" value="Salvar" />
+                </div>       
+                </form>
+              </div>      
+            </div>
+          </div>
+        </div>
+  <!-- FIM Modal Editar -->
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<script src="js/custom.js" type="text/javascript"></script>
+</body>
+</html>
